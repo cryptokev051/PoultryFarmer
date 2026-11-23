@@ -79,6 +79,136 @@ function poultryfarmer_woocommerce_single_add_to_cart_text( $text ) {
 }
 add_filter( 'woocommerce_product_single_add_to_cart_text', 'poultryfarmer_woocommerce_single_add_to_cart_text' );
 
+/** Add a checkout shortcut to purchasable virtual or downloadable products. */
+function poultryfarmer_woocommerce_buy_now_button() {
+	global $product;
+
+	if (
+		! $product instanceof WC_Product
+		|| ! in_array( $product->get_type(), array( 'simple', 'variable' ), true )
+		|| ( ! $product->is_virtual() && ! $product->is_downloadable() )
+	) {
+		return;
+	}
+
+	$token = wp_generate_uuid4();
+	?>
+	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>">
+	<input type="hidden" name="pf_buy_now_token" value="<?php echo esc_attr( $token ); ?>">
+	<input type="hidden" name="pf_buy_now_nonce" value="<?php echo esc_attr( wp_create_nonce( 'poultryfarmer_buy_now_' . $token ) ); ?>">
+	<button type="submit" name="pf_buy_now" value="1" class="button alt poultryfarmer-buy-now" aria-label="<?php echo esc_attr( sprintf( __( 'Buy %s now and continue to checkout', 'poultryfarmer' ), $product->get_name() ) ); ?>" data-label="<?php esc_attr_e( 'Buy Now', 'poultryfarmer' ); ?>" data-loading-label="<?php esc_attr_e( 'Continuing to checkout…', 'poultryfarmer' ); ?>">
+		<?php esc_html_e( 'Buy Now', 'poultryfarmer' ); ?>
+	</button>
+	<?php
+}
+add_action( 'woocommerce_after_add_to_cart_button', 'poultryfarmer_woocommerce_buy_now_button' );
+
+/** Return the validated idempotency token for a Buy Now submission. */
+function poultryfarmer_woocommerce_buy_now_token() {
+	if (
+		! isset( $_REQUEST['pf_buy_now'], $_REQUEST['pf_buy_now_token'], $_REQUEST['pf_buy_now_nonce'] )
+		|| ! is_string( $_REQUEST['pf_buy_now'] )
+		|| ! is_string( $_REQUEST['pf_buy_now_token'] )
+		|| ! is_string( $_REQUEST['pf_buy_now_nonce'] )
+		|| '1' !== wp_unslash( $_REQUEST['pf_buy_now'] )
+	) {
+		return '';
+	}
+
+	$token = sanitize_text_field( wp_unslash( $_REQUEST['pf_buy_now_token'] ) );
+	$nonce = sanitize_text_field( wp_unslash( $_REQUEST['pf_buy_now_nonce'] ) );
+
+	if ( ! preg_match( '/^[a-f0-9-]{36}$/i', $token ) || ! wp_verify_nonce( $nonce, 'poultryfarmer_buy_now_' . $token ) ) {
+		return '';
+	}
+
+	return $token;
+}
+
+/** Require a valid form token when the Buy Now submit control is used. */
+function poultryfarmer_woocommerce_buy_now_validate( $passed ) {
+	if ( isset( $_REQUEST['pf_buy_now'] ) && '' === poultryfarmer_woocommerce_buy_now_token() ) {
+		wc_add_notice( __( 'Please refresh the product page and try Buy Now again.', 'poultryfarmer' ), 'error' );
+		return false;
+	}
+
+	return $passed;
+}
+add_filter( 'woocommerce_add_to_cart_validation', 'poultryfarmer_woocommerce_buy_now_validate' );
+
+/** Reject replayed Buy Now submissions before WooCommerce adds the item again. */
+function poultryfarmer_woocommerce_buy_now_prevent_duplicate() {
+	$token = poultryfarmer_woocommerce_buy_now_token();
+
+	if ( '' === $token || ! WC()->session ) {
+		return;
+	}
+
+	$tokens = WC()->session->get( 'poultryfarmer_buy_now_tokens', array() );
+	if ( isset( $tokens[ $token ] ) ) {
+		wp_safe_redirect( wc_get_checkout_url() );
+		exit;
+	}
+}
+add_action( 'wp_loaded', 'poultryfarmer_woocommerce_buy_now_prevent_duplicate', 19 );
+
+/** Record successful Buy Now submissions for replay protection. */
+function poultryfarmer_woocommerce_buy_now_record_submission() {
+	$token = poultryfarmer_woocommerce_buy_now_token();
+
+	if ( '' === $token || ! WC()->session ) {
+		return;
+	}
+
+	$tokens   = WC()->session->get( 'poultryfarmer_buy_now_tokens', array() );
+	$cutoff   = time() - DAY_IN_SECONDS;
+	$tokens   = array_filter(
+		$tokens,
+		static function ( $created_at ) use ( $cutoff ) {
+			return is_numeric( $created_at ) && (int) $created_at >= $cutoff;
+		}
+	);
+	$tokens[ $token ] = time();
+	WC()->session->set( 'poultryfarmer_buy_now_tokens', array_slice( $tokens, -20, null, true ) );
+}
+add_action( 'woocommerce_add_to_cart', 'poultryfarmer_woocommerce_buy_now_record_submission', 10, 6 );
+
+/** Send valid Buy Now submissions directly to the configured checkout page. */
+function poultryfarmer_woocommerce_buy_now_redirect( $url ) {
+	return '' !== poultryfarmer_woocommerce_buy_now_token() ? wc_get_checkout_url() : $url;
+}
+add_filter( 'woocommerce_add_to_cart_redirect', 'poultryfarmer_woocommerce_buy_now_redirect' );
+
+/** Disable only the Buy Now form after its first submit, including keyboard submits. */
+function poultryfarmer_woocommerce_buy_now_script() {
+	if ( ! is_product() ) {
+		return;
+	}
+	?>
+	<script>
+		document.addEventListener('submit', function (event) {
+			const button = event.submitter;
+			if (!button || !button.matches('button[name="pf_buy_now"]')) return;
+			if (button.dataset.submitting === 'true') {
+				event.preventDefault();
+				return;
+			}
+			button.dataset.submitting = 'true';
+			button.setAttribute('aria-disabled', 'true');
+			button.textContent = button.dataset.loadingLabel;
+		});
+		window.addEventListener('pageshow', function () {
+			document.querySelectorAll('button[name="pf_buy_now"][data-submitting="true"]').forEach(function (button) {
+				button.dataset.submitting = 'false';
+				button.removeAttribute('aria-disabled');
+				button.textContent = button.dataset.label;
+			});
+		});
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'poultryfarmer_woocommerce_buy_now_script', 20 );
+
 /** Link archive cards to their digital product page. */
 function poultryfarmer_woocommerce_archive_add_to_cart_text( $text, $product ) {
 	return $product instanceof WC_Product ? __( 'View Product', 'poultryfarmer' ) : $text;

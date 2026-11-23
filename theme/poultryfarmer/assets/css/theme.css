@@ -2789,6 +2789,18 @@ body {
   margin-block-start: 1.5rem;
 }
 
+.poultryfarmer-single-product .poultryfarmer-buy-now {
+  background: var(--wp--preset--color--brand-dark) !important;
+  color: #fff !important;
+}
+
+.poultryfarmer-single-product .poultryfarmer-buy-now:hover,
+.poultryfarmer-single-product .poultryfarmer-buy-now:focus-visible {
+  background: var(--wp--preset--color--brand-dark) !important;
+  color: #fff !important;
+  text-decoration: underline !important;
+}
+
 .poultryfarmer-single-product .quantity .qty {
   min-height: 48px;
   border: 1px solid var(--wp--preset--color--divider);
@@ -3253,6 +3265,7 @@ body {
   }
 
   .poultryfarmer-single-product .cart .single_add_to_cart_button,
+  .poultryfarmer-single-product .cart .poultryfarmer-buy-now,
   .poultryfarmer-order-access .button {
     width: 100%;
     text-align: center;
