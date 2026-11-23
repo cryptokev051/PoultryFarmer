@@ -2604,6 +2604,12 @@ body {
   margin-block-end: 2rem;
 }
 
+/* A one-product catalogue does not need redundant result controls. */
+.poultryfarmer-shop:has(ul.products > li.product:only-child) .woocommerce-result-count,
+.poultryfarmer-shop:has(ul.products > li.product:only-child) .woocommerce-ordering {
+  display: none;
+}
+
 .poultryfarmer-commerce .woocommerce-ordering select,
 .poultryfarmer-commerce-page input:not([type="checkbox"]):not([type="radio"]),
 .poultryfarmer-commerce-page select,
@@ -2669,7 +2675,7 @@ body {
   padding: 0.8rem 1.2rem !important;
   border: 0 !important;
   border-radius: 4px !important;
-  background: var(--wp--preset--color--brand) !important;
+  background: var(--wp--preset--color--harvest-gold) !important;
   color: var(--wp--preset--color--brand-dark) !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
@@ -4134,6 +4140,7 @@ body :where(input, select, textarea) {
   .site-header .site-header-main {
     min-height: 68px;
     gap: 14px;
+    flex-wrap: wrap !important;
   }
 
   .site-header .site-brand-logo {
@@ -4142,12 +4149,14 @@ body :where(input, select, textarea) {
 
   .site-header .site-header-actions {
     min-width: 0;
-    flex: 1 1 auto;
+    flex: 1 1 100%;
+    width: 100%;
   }
 
   .site-header .site-header-search {
     min-width: 0;
-    flex-basis: auto;
+    flex: 1 1 100%;
+    width: 100%;
   }
 
   .site-header .site-header-search .wp-block-search__input {
@@ -4197,9 +4206,14 @@ body :where(input, select, textarea) {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .phase2b1-card-grid--four,
-  .site-footer-grid {
+  .phase2b1-card-grid--four {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 32px;
   }
 
   .phase2b1-topic-card {
@@ -4227,12 +4241,21 @@ body :where(input, select, textarea) {
   }
 
   .site-footer-brand {
-    grid-column: auto;
+    grid-column: 1 / -1;
   }
 
   .site-footer .site-footer-bottom {
     align-items: flex-start;
     flex-direction: column;
+    margin-top: 36px;
+  }
+
+  .site-footer .footer-section-heading {
+    margin-bottom: 14px;
+  }
+
+  .site-footer .footer-link-list li {
+    margin-bottom: 8px;
   }
 }
 
