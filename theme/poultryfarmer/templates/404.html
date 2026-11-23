@@ -1,0 +1,55 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header-wrapper"} /-->
+
+<!-- wp:group {"tagName":"main","className":"error-404-page","style":{"spacing":{"padding":{"top":"clamp(80px,12vw,150px)","bottom":"clamp(80px,12vw,150px)"}}},"layout":{"type":"constrained","contentSize":"760px"}} -->
+<main class="wp-block-group error-404-page" style="padding-top:clamp(80px,12vw,150px);padding-bottom:clamp(80px,12vw,150px)">
+	<!-- wp:paragraph {"align":"center","textColor":"brand-dark","className":"poultryfarmer-eyebrow","style":{"typography":{"fontSize":"0.82rem","fontWeight":"800"}}} -->
+	<p class="has-text-align-center poultryfarmer-eyebrow has-brand-dark-color has-text-color" style="font-size:0.82rem;font-weight:800">Error 404</p>
+	<!-- /wp:paragraph -->
+	<!-- wp:heading {"textAlign":"center","level":1,"fontSize":"xx-large"} -->
+	<h1 class="wp-block-heading has-text-align-center has-xx-large-font-size">This page could not be found</h1>
+	<!-- /wp:heading -->
+	<!-- wp:paragraph {"align":"center","className":"error-404-personality"} -->
+	<p class="has-text-align-center error-404-personality">This page has fallen off the radar.</p>
+	<!-- /wp:paragraph -->
+	<!-- wp:paragraph {"align":"center","textColor":"muted","className":"error-404-recovery-copy"} -->
+	<p class="has-text-align-center error-404-recovery-copy has-muted-color has-text-color">Try searching the guides, return to the homepage, or explore the farming directory.</p>
+	<!-- /wp:paragraph -->
+	<!-- wp:search {"label":"Search Poultry Farmer","showLabel":false,"placeholder":"Search poultry farming guides","buttonText":"Search","style":{"spacing":{"margin":{"top":"32px"}},"border":{"radius":"999px"}}} /-->
+	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"28px"}}}} -->
+	<div class="wp-block-buttons" style="margin-top:28px">
+		<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/">Return to homepage</a></div><!-- /wp:button -->
+	</div>
+	<!-- /wp:buttons -->
+
+	<!-- wp:group {"align":"wide","className":"error-404-latest","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide error-404-latest">
+		<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large","className":"error-404-latest-title"} -->
+		<h2 class="wp-block-heading has-text-align-center error-404-latest-title has-x-large-font-size">Latest Guides</h2>
+		<!-- /wp:heading -->
+
+		<!-- wp:query {"queryId":5,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"className":"error-404-analysis-query","layout":{"type":"default"}} -->
+		<div class="wp-block-query error-404-analysis-query">
+			<!-- wp:post-template {"className":"error-404-analysis-grid","style":{"spacing":{"blockGap":"20px"}},"layout":{"type":"grid","columnCount":3}} -->
+				<!-- wp:group {"className":"error-404-analysis-card","backgroundColor":"surface","style":{"border":{"color":"var:preset|color|divider","width":"1px","radius":"16px"},"spacing":{"padding":{"top":"18px","right":"18px","bottom":"20px","left":"18px"}}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group error-404-analysis-card has-border-color has-surface-background-color has-background" style="border-color:var(--wp--preset--color--divider);border-width:1px;border-radius:16px;padding-top:18px;padding-right:18px;padding-bottom:20px;padding-left:18px">
+					<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","className":"error-404-analysis-image","style":{"border":{"radius":"14px 14px 0 0"},"spacing":{"margin":{"top":"-18px","right":"-18px","bottom":"16px","left":"-18px"}}}} /-->
+					<!-- wp:post-terms {"term":"category","textColor":"brand-dark","fontSize":"small","className":"error-404-analysis-category"} /-->
+					<!-- wp:post-title {"isLink":true,"className":"error-404-analysis-title","style":{"typography":{"fontSize":"1.1rem","fontWeight":"800","lineHeight":"1.3"},"spacing":{"margin":{"top":"8px","bottom":"12px"}}}} /-->
+					<!-- wp:post-date {"textColor":"muted","fontSize":"small","className":"error-404-analysis-date"} /-->
+				</div>
+				<!-- /wp:group -->
+			<!-- /wp:post-template -->
+
+			<!-- wp:query-no-results -->
+				<!-- wp:paragraph {"align":"center","textColor":"muted"} -->
+				<p class="has-text-align-center has-muted-color has-text-color">No guides have been published yet.</p>
+				<!-- /wp:paragraph -->
+			<!-- /wp:query-no-results -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "7.1.4" },
+  "siteOptions": { "blogname": "Poultry Farmer Profile A", "blogdescription": "WordPress-only synthetic runtime" },
+  "steps": [
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; wp_insert_post(array('post_title'=>'Local Sample Editorial Article','post_content'=>'Synthetic local content only.','post_status'=>'publish','post_type'=>'post')); update_option('permalink_structure','/%postname%/'); flush_rewrite_rules();" }
+  ]
+}

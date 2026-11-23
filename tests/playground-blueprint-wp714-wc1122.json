@@ -1,0 +1,17 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {
+    "php": "8.3",
+    "wp": "7.1.4"
+  },
+  "siteOptions": {
+    "blogname": "Poultry Farmer Local Validation - Current",
+    "blogdescription": "Isolated sample content only"
+  },
+  "steps": [
+    { "step": "activateTheme", "themeFolderName": "poultryfarmer" },
+    { "step": "installPlugin", "pluginData": { "resource": "url", "url": "https://downloads.wordpress.org/plugin/woocommerce.11.2.2.zip" } },
+    { "step": "activatePlugin", "pluginPath": "woocommerce/woocommerce.php" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; foreach (array('Homepage','Start Here','Kienyeji Farming','Layers Farming','Broilers Farming') as $title) { $id = wp_insert_post(array('post_title' => $title, 'post_content' => 'Local synthetic sample content for Poultry Farmer validation only.', 'post_status' => 'publish', 'post_type' => 'page')); if ($title === 'Homepage') { update_option('show_on_front', 'page'); update_option('page_on_front', $id); } } wp_insert_post(array('post_title' => 'Local Sample Editorial Article', 'post_content' => 'Synthetic long-form sample content for local rendering validation only. No production material.', 'post_status' => 'publish', 'post_type' => 'post')); if (class_exists('WC_Product_Simple')) { $product = new WC_Product_Simple(); $product->set_name('Local Sample Virtual Download'); $product->set_status('publish'); $product->set_catalog_visibility('visible'); $product->set_virtual(true); $product->set_downloadable(true); $product->set_regular_price('0'); $product->save(); } update_option('permalink_structure', '/%postname%/'); flush_rewrite_rules();" }
+  ]
+}

@@ -1,0 +1,50 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header-wrapper"} /-->
+
+<!-- wp:group {"tagName":"main","className":"search-results-page","style":{"spacing":{"padding":{"top":"56px","bottom":"80px"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group search-results-page" style="padding-top:56px;padding-bottom:80px">
+	<!-- wp:group {"align":"wide","className":"search-results-header","backgroundColor":"brand-soft","style":{"border":{"radius":"22px"},"spacing":{"padding":{"top":"36px","right":"clamp(24px,5vw,64px)","bottom":"36px","left":"clamp(24px,5vw,64px)"},"margin":{"bottom":"40px"}}},"layout":{"type":"constrained","justifyContent":"left"}} -->
+	<div class="wp-block-group alignwide search-results-header has-brand-soft-background-color has-background" style="border-radius:22px;margin-bottom:40px;padding-top:36px;padding-right:clamp(24px,5vw,64px);padding-bottom:36px;padding-left:clamp(24px,5vw,64px)">
+		<!-- wp:query-title {"type":"search","showPrefix":true,"className":"search-results-title"} /-->
+		<!-- wp:search {"label":"Search again","showLabel":false,"placeholder":"Search poultry farming guides and tools","buttonText":"Search","className":"search-results-form","style":{"border":{"radius":"999px"}}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":4,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"relevance","inherit":true},"align":"wide","className":"search-results-query"} -->
+	<div class="wp-block-query alignwide search-results-query">
+		<!-- wp:post-template {"style":{"spacing":{"blockGap":"24px"}},"layout":{"type":"grid","columnCount":2}} -->
+			<!-- wp:group {"className":"poultryfarmer-card search-result-card","backgroundColor":"surface","style":{"border":{"color":"var:preset|color|divider","width":"1px","radius":"18px"},"spacing":{"padding":{"top":"24px","right":"24px","bottom":"24px","left":"24px"}}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group poultryfarmer-card search-result-card has-border-color has-surface-background-color has-background" style="border-color:var(--wp--preset--color--divider);border-width:1px;border-radius:18px;padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3","className":"search-result-image","style":{"border":{"radius":"12px"}}} /-->
+				<!-- wp:group {"className":"search-result-content","layout":{"type":"default"}} -->
+				<div class="wp-block-group search-result-content">
+					<!-- wp:post-terms {"term":"category","textColor":"brand-dark","fontSize":"small","className":"search-result-label"} /-->
+					<!-- wp:post-title {"isLink":true,"className":"search-result-title"} /-->
+					<!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"textColor":"muted","className":"search-result-excerpt"} /-->
+					<!-- wp:post-date {"textColor":"muted","fontSize":"small","className":"search-result-date"} /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination {"className":"pagination search-results-pagination","layout":{"type":"flex","justifyContent":"center"}} -->
+			<!-- wp:query-pagination-previous {"label":"Previous"} /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next {"label":"Next"} /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:group {"className":"search-no-results","backgroundColor":"surface","style":{"border":{"color":"var:preset|color|divider","width":"1px","radius":"18px"},"spacing":{"padding":{"top":"40px","right":"32px","bottom":"40px","left":"32px"}}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group search-no-results has-border-color has-surface-background-color has-background" style="border-color:var(--wp--preset--color--divider);border-width:1px;border-radius:18px;padding-top:40px;padding-right:32px;padding-bottom:40px;padding-left:32px">
+				<!-- wp:heading {"textAlign":"center","level":2} --><h2 class="wp-block-heading has-text-align-center">No matching guides</h2><!-- /wp:heading -->
+				<!-- wp:paragraph {"align":"center","textColor":"muted"} --><p class="has-text-align-center has-muted-color has-text-color">Try a shorter phrase, browse the farming hubs or visit the complete Guides directory.</p><!-- /wp:paragraph -->
+				<!-- wp:search {"label":"Try another search","showLabel":false,"placeholder":"Search poultry farming guides and tools","buttonText":"Search","className":"search-no-results-form","style":{"border":{"radius":"999px"}}} /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

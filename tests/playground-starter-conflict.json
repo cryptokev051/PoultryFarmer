@@ -1,0 +1,10 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "7.1.4" },
+  "siteOptions": { "blogname": "Poultry Farmer Starter Conflict QA", "blogdescription": "Isolated conflict validation" },
+  "steps": [
+    { "step": "defineWpConfigConsts", "consts": { "AUTOMATIC_UPDATER_DISABLED": true } },
+    { "step": "activatePlugin", "pluginPath": "poultryfarmer-starter/poultryfarmer-starter.php" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; wp_insert_post(array('post_type'=>'page','post_status'=>'draft','post_title'=>'Existing Farming Page','post_name'=>'farming','post_content'=>'Untracked conflict fixture.'));" }
+  ]
+}

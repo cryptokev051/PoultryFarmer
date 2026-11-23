@@ -1,0 +1,9 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "7.1.4" },
+  "siteOptions": { "blogname": "Poultry Farmer Starter QA", "blogdescription": "Fresh-install starter setup validation" },
+  "steps": [
+    { "step": "defineWpConfigConsts", "consts": { "AUTOMATIC_UPDATER_DISABLED": true } },
+    { "step": "activatePlugin", "pluginPath": "poultryfarmer-starter/poultryfarmer-starter.php" }
+  ]
+}

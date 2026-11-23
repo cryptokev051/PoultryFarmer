@@ -1,0 +1,46 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header-wrapper"} /-->
+
+<!-- wp:group {"tagName":"main","className":"article-shell","style":{"spacing":{"padding":{"top":"64px","bottom":"80px"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group article-shell" style="padding-top:64px;padding-bottom:80px">
+	<!-- wp:group {"align":"wide","className":"poultryfarmer-breadcrumbs","layout":{"type":"default"}} --><div class="wp-block-group alignwide poultryfarmer-breadcrumbs"></div><!-- /wp:group -->
+	<!-- wp:group {"align":"wide","className":"article-header","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide article-header">
+		<!-- wp:post-terms {"term":"category","textColor":"brand-dark","className":"article-category","style":{"typography":{"fontSize":"0.82rem","fontWeight":"800","textTransform":"uppercase","letterSpacing":"0.08em"}}} /-->
+		<!-- wp:post-title {"level":1,"className":"article-title"} /-->
+		<!-- wp:post-excerpt {"textColor":"muted","className":"article-standfirst"} /-->
+
+		<!-- wp:group {"className":"article-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+		<div class="wp-block-group article-meta">
+			<!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Written by</p><!-- /wp:paragraph -->
+			<!-- wp:post-author-name {"isLink":true,"fontSize":"small","className":"article-meta-author"} /-->
+			<!-- wp:paragraph {"fontSize":"small","className":"article-meta-separator"} --><p class="article-meta-separator has-small-font-size">·</p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"fontSize":"small"} --><p class="has-small-font-size">Published</p><!-- /wp:paragraph -->
+			<!-- wp:post-date {"format":"j F Y","fontSize":"small","className":"article-meta-date"} /-->
+			<!-- wp:group {"className":"article-updated-meta","layout":{"type":"flex","flexWrap":"nowrap"}} --><div class="wp-block-group article-updated-meta"></div><!-- /wp:group -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:post-featured-image {"align":"wide","aspectRatio":"16/9","className":"article-featured-image","style":{"border":{"radius":"18px"}}} /-->
+
+	<!-- wp:group {"layout":{"type":"constrained","contentSize":"760px"}} -->
+	<div class="wp-block-group">
+		<!-- wp:post-content {"className":"article-content","layout":{"type":"constrained"}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"wide","className":"article-author-profile","layout":{"type":"constrained"}} --><div class="wp-block-group alignwide article-author-profile"></div><!-- /wp:group -->
+
+	<!-- wp:pattern {"slug":"poultryfarmer/related-analysis"} /-->
+
+	<!-- wp:group {"align":"wide","style":{"border":{"top":{"color":"var:preset|color|divider","width":"1px"}},"spacing":{"padding":{"top":"32px"},"margin":{"top":"48px"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide" style="border-top-color:var(--wp--preset--color--divider);border-top-width:1px;margin-top:48px;padding-top:32px">
+		<!-- wp:post-navigation-link {"type":"previous","label":"Previous guide","showTitle":true} /-->
+		<!-- wp:post-navigation-link {"label":"Next guide","showTitle":true} /-->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "7.1.4" },
+  "siteOptions": { "blogname": "Poultry Farmer Default Theme Control", "blogdescription": "Isolated sample content only" },
+  "steps": [
+    { "step": "installPlugin", "pluginData": { "resource": "url", "url": "https://downloads.wordpress.org/plugin/woocommerce.11.2.2.zip" } },
+    { "step": "activatePlugin", "pluginPath": "woocommerce/woocommerce.php" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; if (wp_get_theme('twentytwentyfive')->exists()) { switch_theme('twentytwentyfive'); } foreach (array('Homepage','Shop','Cart','Checkout','My Account') as $title) { $id = wp_insert_post(array('post_title' => $title, 'post_content' => 'Local synthetic sample content for control validation only.', 'post_status' => 'publish', 'post_type' => 'page')); if ($title === 'Homepage') { update_option('show_on_front', 'page'); update_option('page_on_front', $id); } if ($title === 'Shop') update_option('woocommerce_shop_page_id', $id); if ($title === 'Cart') update_option('woocommerce_cart_page_id', $id); if ($title === 'Checkout') update_option('woocommerce_checkout_page_id', $id); if ($title === 'My Account') update_option('woocommerce_myaccount_page_id', $id); } if (class_exists('WC_Product_Simple')) { $product = new WC_Product_Simple(); $product->set_name('Local Sample Virtual Download'); $product->set_status('publish'); $product->set_catalog_visibility('visible'); $product->set_virtual(true); $product->set_downloadable(true); $product->set_regular_price('0'); $product->save(); } update_option('permalink_structure', '/%postname%/'); flush_rewrite_rules();" }
+  ]
+}

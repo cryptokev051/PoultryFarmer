@@ -1,0 +1,22 @@
+{
+  "name": "poultryfarmer-local-browser-qa",
+  "private": true,
+  "description": "Project-local browser QA dependencies for Poultry Farmer only",
+  "scripts": {
+    "test:phase2b1": "playwright test browser/phase2b1.spec.mjs --config=playwright.config.mjs",
+    "test:phase2b2": "playwright test browser/phase2b2.spec.mjs --config=playwright.config.mjs",
+    "test:phase2b2-editor": "playwright test browser/editor-workflow.spec.mjs --config=playwright.config.mjs",
+    "test:phase2b2-persistence": "playwright test browser/editor-persistence.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:starter-conflict": "playwright test browser/starter-conflict.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:starter-preflight": "playwright test browser/starter-preflight.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:starter-reading-privacy": "playwright test browser/starter-reading-privacy.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:starter-setup": "playwright test browser/starter-setup.spec.mjs --config=playwright.config.mjs",
+    "test:starter-persistence": "playwright test browser/starter-persistence.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:starter-package": "playwright test browser/starter-package.spec.mjs --config=playwright.config.mjs --project=desktop-1440",
+    "test:local-smoke": "playwright test browser/local-smoke.spec.mjs --config=playwright.local.config.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@wp-playground/cli": "3.1.65"
+  }
+}

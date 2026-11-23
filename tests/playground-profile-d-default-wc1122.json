@@ -1,0 +1,10 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "7.1.4" },
+  "siteOptions": { "blogname": "Poultry Farmer Profile D", "blogdescription": "Default-theme WooCommerce synthetic runtime" },
+  "steps": [
+    { "step": "installPlugin", "pluginData": { "resource": "url", "url": "https://downloads.wordpress.org/plugin/woocommerce.11.2.2.zip" } },
+    { "step": "activatePlugin", "pluginPath": "woocommerce/woocommerce.php" },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; if (wp_get_theme('twentytwentyfive')->exists()) switch_theme('twentytwentyfive'); wp_insert_post(array('post_title'=>'Local Sample Editorial Article','post_content'=>'Synthetic local content only.','post_status'=>'publish','post_type'=>'post')); if (class_exists('WC_Product_Simple')) { $p=new WC_Product_Simple(); $p->set_name('Local Sample Virtual Download'); $p->set_status('publish'); $p->set_catalog_visibility('visible'); $p->set_virtual(true); $p->set_downloadable(true); $p->set_regular_price('0'); $p->save(); } update_option('permalink_structure','/%postname%/'); flush_rewrite_rules();" }
+  ]
+}

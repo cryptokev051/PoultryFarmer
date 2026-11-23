@@ -1,0 +1,58 @@
+# Dependencies and build output
+node_modules/
+vendor/
+dist/
+build/
+.cache/
+.vite/
+.wp-env.override.json
+.wp-env.json
+.lando/
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Local WordPress/runtime data
+*.sql
+*.sqlite
+*.sqlite3
+wp-content/uploads/
+local-*.json
+localwp/
+Local Sites/
+
+# Archives, backups and temporary files
+*.bak
+*.backup
+*.zip
+releases/*.zip
+*.tar
+*.tar.gz
+*.tmp
+*.temp
+tmp/
+temp/
+tests/fixtures/
+tests/artifacts/
+tests/screenshots/
+tests/tools/
+tests/.runtime-home/
+tests/.runtime-tmp/
+
+# Supplied source-artwork library (production web exports remain in the theme)
+brand-assets/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
