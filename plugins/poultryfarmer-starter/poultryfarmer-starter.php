@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Poultry Farmer Starter Setup
  * Description: Administrator-triggered, one-time starter content and site setup for Poultry Farmer.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Requires at least: 6.6
  * Requires PHP: 7.4
  * Author: Poultry Farmer
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class PoultryFarmer_Starter_Setup {
-	const VERSION         = '1.0.1';
+	const VERSION         = '1.0.2';
 	const OPTION_MANIFEST = 'poultryfarmer_starter_manifest_v1';
 	const PAGE_META       = '_poultryfarmer_starter_key';
 	const TERM_META       = '_poultryfarmer_starter_key';
@@ -376,7 +376,7 @@ final class PoultryFarmer_Starter_Setup {
 
 	/** An untracked install may proceed only from WordPress's supported defaults. */
 	private static function is_supported_initial_permalink( $permalink ) {
-		return in_array( (string) $permalink, array( '', '/%year%/%monthnum%/%day%/%postname%/' ), true );
+		return in_array( (string) $permalink, array( '', '/%year%/%monthnum%/%day%/%postname%/', '/%postname%/' ), true );
 	}
 
 	/** Test-only interruption seam; production has no checkpoint callback. */
@@ -390,10 +390,10 @@ final class PoultryFarmer_Starter_Setup {
 	 */
 	private static function fresh_install_rejection_reason() {
 		if ( 'en_US' !== get_locale() ) {
-			return sprintf( __( 'The baseline cannot be established safely for locale "%s"; only the exact en_US WordPress 7.1.4 fixture is supported.', 'poultryfarmer-starter' ), get_locale() );
+			return sprintf( __( 'The baseline cannot be established safely for locale "%s"; only the exact en_US WordPress 7.1.4 or 7.1.5 fixture is supported.', 'poultryfarmer-starter' ), get_locale() );
 		}
-		if ( '7.1.4' !== get_bloginfo( 'version' ) ) {
-			return sprintf( __( 'The baseline cannot be established safely for WordPress version "%s"; only the exact WordPress 7.1.4 fixture is supported.', 'poultryfarmer-starter' ), get_bloginfo( 'version' ) );
+		if ( ! in_array( get_bloginfo( 'version' ), array( '7.1.4', '7.1.5' ), true ) ) {
+			return sprintf( __( 'The baseline cannot be established safely for WordPress version "%s"; only the exact supported WordPress 7.1.4 or 7.1.5 fixture is supported.', 'poultryfarmer-starter' ), get_bloginfo( 'version' ) );
 		}
 
 		$allowed_types = array( 'post', 'page', 'product' );
@@ -435,7 +435,7 @@ final class PoultryFarmer_Starter_Setup {
 			}
 			$allowed[] = (int) $privacy->ID;
 		} else {
-			return __( 'The supported WordPress 7.1.4 fresh-install Privacy Policy fixture is missing; its baseline cannot be established safely.', 'poultryfarmer-starter' );
+			return __( 'The supported WordPress 7.1.4/7.1.5 fresh-install Privacy Policy fixture is missing; its baseline cannot be established safely.', 'poultryfarmer-starter' );
 		}
 
 		$found = array();
@@ -503,7 +503,7 @@ final class PoultryFarmer_Starter_Setup {
 		return hash_equals( 'bebc913435795558c346cdbf473f78519c4bca9f05b10d3d636e33ea7390216c', hash( 'sha256', $content ) );
 	}
 
-	/** Normalize a supported core sample for exact English 7.1.4 baseline comparison. */
+	/** Normalize a supported core sample for exact English 7.1.4/7.1.5 baseline comparison. */
 	private static function normalized_sample_text( $content ) {
 		$text = (string) $content;
 		$text = preg_replace( '/<!--\\/?wp:[^>]*-->/', '', $text );

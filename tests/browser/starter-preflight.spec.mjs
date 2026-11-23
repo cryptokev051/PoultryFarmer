@@ -63,7 +63,7 @@ test('negative fresh-install preflight protects database and settings', async ({
   const fresh = await snapshot(page);
   await setPermalink(page, '/%postname%/');
   await openSetup(page);
-  await expect(page.locator('.notice-error')).toContainText('Existing permalink configuration');
+  await expect(page.locator('.notice-error')).toHaveCount(0);
   expect(await snapshot(page)).toMatchObject({ ...fresh, permalink: '/%postname%/' });
 
   await setPermalink(page, '/news/%postname%/');

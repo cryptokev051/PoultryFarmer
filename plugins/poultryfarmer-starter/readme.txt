@@ -2,16 +2,16 @@
 Contributors: poultryfarmer
 Tags: starter content, setup, block editor
 Requires at least: 6.6
-Tested up to: 7.1.4
+Tested up to: 7.1.5
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 
 Administrator-triggered starter Pages, Categories, hub Query Loops and site settings for a fresh Poultry Farmer installation.
 
 == Compatibility and safety scope ==
 
-The initial setup preflight intentionally supports only the verified local fixture: WordPress 7.1.4, PHP 8.3-compatible runtime, and the en_US locale. It requires the supported fresh Reading settings and default permalink state, and it fails closed when the core sample baseline or Privacy Policy baseline cannot be established. Do not run initial setup on an established, translated, or otherwise modified site. Verified partial and completed manifests retain their existing owner content and settings subject to consistency checks.
+The initial setup preflight intentionally supports only the verified local fixtures: WordPress 7.1.4 or 7.1.5, PHP 8.2-compatible runtime, and the en_US locale. It accepts the supported fresh Reading settings and the standard date permalink or `/%postname%/` only after exact core sample and Privacy Policy baselines are verified. It fails closed when those baselines cannot be established. Do not run initial setup on an established, translated, or otherwise modified site. Verified partial and completed manifests retain their existing owner content and settings subject to consistency checks.
 
 == Installation ==
 

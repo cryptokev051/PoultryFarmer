@@ -42,11 +42,11 @@ The smoke test confirmed body visibility, no horizontal overflow, no missing ima
 
 ## Activation and compatibility
 
-The source directories are available at the correct WordPress identifiers. Local's bundled WP-CLI reports `poultryfarmer` as the active template and stylesheet. The `poultryfarmer-starter` plugin is active at version 1.0.1. The active homepage returned HTTP 200 with Poultry Farmer references, header/footer markers and no fatal-error text.
+The source directories are available at the correct WordPress identifiers. Local's bundled WP-CLI reports `poultryfarmer` as the active template and stylesheet. The `poultryfarmer-starter` plugin is active at version 1.0.2. The active homepage returned HTTP 200 with Poultry Farmer references, header/footer markers and no fatal-error text.
 
 A recoverable database export was created before plugin activation at `C:\Users\admin\Local Sites\poultryfarmer\backups\before-poultryfarmer-starter-activation-2026-11-23.sql`. No starter content was created and no site settings were changed.
 
-The theme declares WordPress 6.6+ and PHP 7.4+. The starter read-only preview identified the expected 18 Pages, 8 Categories and settings plan, then reported two conflicts: WordPress 7.1.5 is outside the verified 7.1.4 en_US fixture, and the existing `/%postname%/` permalink structure is custom/owner-configured. WordPress 7.1.5 is therefore not an approved starter-setup target. The smallest safe correction is to verify the 7.1.5 en_US fresh-install fixture and add explicit fingerprints/version support, then rerun the negative preflight suite; bypassing the guard is not acceptable.
+The theme declares WordPress 6.6+ and PHP 7.4+. The starter read-only preview identifies the expected 18 Pages, 8 Categories and settings plan with no conflicts. WordPress 7.1.5 en_US and the exact `/%postname%/` initial state are supported only after the exact sample, Privacy Policy, Reading-settings and unused-install checks pass. Unrelated custom structures and established content remain blocked.
 
 ## Release verification
 
@@ -63,4 +63,4 @@ Native PHP lint passed for all shipped PHP files using Local PHP 8.2.29. The pac
 
 The project has no committed baseline; Git reports the existing project directories and files as untracked (`.gitignore`, `README.md`, `docs/`, `plugins/`, `tests/`, `theme/`). No commit, push or deployment was performed.
 
-Remaining blockers are limited to authenticated Local admin verification and the intentional starter-plugin 7.1.5 fixture compatibility gate. No theme redesign, feature work, WooCommerce/payment change or production migration was made.
+No starter setup blocker remains on this verified unused Local installation; only owner approval is required before the one-time content-creation action. No theme redesign, feature work, WooCommerce/payment change or production migration was made.

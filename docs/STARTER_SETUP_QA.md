@@ -100,7 +100,7 @@ All 12 frontend captures came from valid rendered WordPress pages after plugin d
 
 ## Findings and corrections during QA
 
-1. WordPress 7.1.4 fresh installs use the standard date permalink. The preflight now accepts it only with the exact core sample-content signature.
+1. WordPress 7.1.4 and 7.1.5 supported fresh installs use verified sample fixtures. The preflight accepts the standard date permalink or `/%postname%/` only with the exact core and Privacy Policy signatures.
 2. The editor test now updates Gutenberg through the core block-editor store and verifies the saved REST representation.
 3. Plugin state checks use accessible action names instead of an unavailable `data-slug` selector.
 4. Playground Package runs execute from an empty isolated temp directory because the CLI otherwise auto-mounts the working directory.
@@ -109,7 +109,7 @@ All 12 frontend captures came from valid rendered WordPress pages after plugin d
 7. The preflight was tightened to reject additional custom/editorial records and modified default samples with specific reasons. It continues to ignore ordinary WordPress internal records.
 8. Site settings are now read back and setup is only marked complete after every expected value matches.
 9. Initial setup now blocks non-default Reading settings (`show_on_front`, `page_on_front`, `page_for_posts`) before any mutation.
-10. The Privacy Policy is verified with a URL-normalized exact fixture fingerprint for WordPress 7.1.4 en_US; modified content blocks setup.
+10. The Privacy Policy is verified with a URL-normalized exact fixture fingerprint for WordPress 7.1.4/7.1.5 en_US; modified content blocks setup.
 
 No confirmed production theme defect was found.
 

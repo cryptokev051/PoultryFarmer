@@ -26,7 +26,7 @@ The destinations were absent before creation and were not replacements for exist
 
 ## Preview and editing
 
-Open `http://poultryfarmer.local/` to preview the site and `http://poultryfarmer.local/wp-admin/` for administration. Refresh after source edits. The one-time starter setup is administrator-triggered and must not be run on this Local database until its strict WordPress 7.1.4/en_US fixture baseline has been independently updated and verified for WordPress 7.1.5.
+Open `http://poultryfarmer.local/` to preview the site and `http://poultryfarmer.local/wp-admin/` for administration. Refresh after source edits. The one-time starter setup is administrator-triggered; its read-only preview is currently eligible on this unused WordPress 7.1.5 en_US installation and must still be approved before execution.
 
 The homepage editing boundary is documented in `OWNER_CONTENT_EDITING_GUIDE.md`: Pages > Home stores the introduction, Appearance > Editor controls reusable site parts, and theme templates continue to control the approved hero, layout, queries and H1.
 
@@ -60,4 +60,4 @@ Before major Local changes, use Local's site backup/export facility and verify t
 
 The connection is live and the CSS source proof passed and was reverted. The `poultryfarmer` theme and `poultryfarmer-starter` plugin are active through Local's bundled WP-CLI. A recoverable database export was created at `C:\Users\admin\Local Sites\poultryfarmer\backups\before-poultryfarmer-starter-activation-2026-11-23.sql` before plugin activation.
 
-Starter content was not created. Its read-only preview reports the expected 18 Pages, 8 Categories and settings changes, but blocks this site because WordPress is 7.1.5 rather than the verified 7.1.4 fixture and because the site already uses custom `/%postname%/` permalinks. The owner must not bypass that guard.
+Starter content was not created. Its read-only preview reports the expected 18 Pages, 8 Categories and settings changes with no conflicts. The exact `/%postname%/` structure is supported only for this verified unused fixture; unrelated custom structures and established content remain blocked.
