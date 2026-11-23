@@ -29,6 +29,22 @@ function poultryfarmer_woocommerce_single_product_layout() {
 }
 add_action( 'wp', 'poultryfarmer_woocommerce_single_product_layout' );
 
+/** Explain digital delivery without promising access before payment confirmation. */
+function poultryfarmer_woocommerce_product_delivery_note() {
+	global $product;
+
+	if ( ! $product instanceof WC_Product || ( ! $product->is_virtual() && ! $product->is_downloadable() ) ) {
+		return;
+	}
+	?>
+	<section class="poultryfarmer-product-delivery" aria-labelledby="poultryfarmer-product-delivery-title">
+		<p class="poultryfarmer-product-delivery__label" id="poultryfarmer-product-delivery-title"><?php esc_html_e( 'Digital delivery', 'poultryfarmer' ); ?></p>
+		<p><?php esc_html_e( 'Eligible files become available after WooCommerce confirms successful payment.', 'poultryfarmer' ); ?></p>
+	</section>
+	<?php
+}
+add_action( 'woocommerce_single_product_summary', 'poultryfarmer_woocommerce_product_delivery_note', 25 );
+
 /** Render editor-managed product details as a visible decision-support section. */
 function poultryfarmer_woocommerce_product_details() {
 	global $post;

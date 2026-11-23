@@ -2697,9 +2697,59 @@ body {
   margin-inline: auto;
 }
 
+.poultryfarmer-single-product div.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
 .poultryfarmer-single-product div.product div.images,
 .poultryfarmer-single-product div.product div.summary {
+	float: none;
+	width: auto;
   margin-block-end: clamp(2.5rem, 6vw, 5rem);
+}
+
+.poultryfarmer-single-product div.product div.images {
+	min-width: 0;
+}
+
+.poultryfarmer-single-product div.product div.images .woocommerce-product-gallery__image img {
+	border-radius: 12px;
+	background: var(--wp--preset--color--brand-soft);
+}
+
+.poultryfarmer-single-product div.product div.images .flex-control-thumbs {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.75rem;
+	margin-block-start: 0.75rem;
+}
+
+.poultryfarmer-single-product div.product div.images .flex-control-thumbs li {
+	float: none;
+	width: auto;
+}
+
+.poultryfarmer-single-product div.product div.images .flex-control-thumbs img {
+	border: 2px solid transparent;
+	border-radius: 8px;
+}
+
+.poultryfarmer-single-product div.product div.images .flex-control-thumbs img:hover,
+.poultryfarmer-single-product div.product div.images .flex-control-thumbs .flex-active {
+	border-color: var(--wp--preset--color--brand-dark);
+}
+
+.poultryfarmer-single-product div.product div.images.woocommerce-product-gallery--without-images :is(.woocommerce-product-gallery__image, .woocommerce-product-gallery__image--placeholder) {
+	display: flex;
+	justify-content: center;
+}
+
+.poultryfarmer-single-product div.product div.images.woocommerce-product-gallery--without-images :is(.woocommerce-product-gallery__image, .woocommerce-product-gallery__image--placeholder) img {
+	width: min(100%, 420px);
+	max-height: 420px;
+	object-fit: contain;
 }
 
 .poultryfarmer-single-product div.product .product_title {
@@ -2711,6 +2761,25 @@ body {
   color: var(--wp--preset--color--muted);
   font-size: 1.075rem;
   line-height: 1.7;
+}
+
+.poultryfarmer-product-delivery {
+	margin-block: 1.25rem;
+	padding: 1rem 1.1rem;
+	border-inline-start: 4px solid var(--wp--preset--color--harvest-gold);
+	background: var(--wp--preset--color--brand-soft);
+}
+
+.poultryfarmer-product-delivery p {
+	margin: 0;
+	color: var(--wp--preset--color--muted);
+	line-height: 1.55;
+}
+
+.poultryfarmer-product-delivery__label {
+	margin-block-end: 0.25rem !important;
+	color: var(--wp--preset--color--brand-dark) !important;
+	font-weight: 800;
 }
 
 .poultryfarmer-single-product .cart {
@@ -2740,6 +2809,42 @@ body {
 .poultryfarmer-product-details__content h2,
 .poultryfarmer-product-details__content h3 {
   margin-block-start: 2.5rem;
+}
+
+.poultryfarmer-product-details__content h2:first-child,
+.poultryfarmer-product-details__content h3:first-child {
+	margin-block-start: 0;
+}
+
+.poultryfarmer-product-details__content img {
+	max-width: 100%;
+	height: auto;
+	border: 1px solid var(--wp--preset--color--divider);
+	border-radius: 10px;
+}
+
+.poultryfarmer-product-details__content figure {
+	margin-inline: 0;
+}
+
+.poultryfarmer-product-details__content figcaption {
+	margin-block-start: 0.5rem;
+	color: var(--wp--preset--color--muted);
+	font-size: 0.9rem;
+}
+
+.poultryfarmer-product-details__content details {
+	padding-block: 1rem;
+	border-block: 1px solid var(--wp--preset--color--divider);
+}
+
+.poultryfarmer-product-details__content details + details {
+	border-block-start: 0;
+}
+
+.poultryfarmer-product-details__content summary {
+	cursor: pointer;
+	font-weight: 800;
 }
 
 .poultryfarmer-commerce-page {
@@ -3119,6 +3224,24 @@ body {
   .poultryfarmer-single-product div.product div.summary {
     float: none;
     width: 100%;
+  }
+
+  .poultryfarmer-single-product div.product {
+    display: block;
+  }
+
+  .poultryfarmer-single-product div.product div.images,
+  .poultryfarmer-single-product div.product div.summary {
+    margin-block-end: 2rem;
+  }
+
+  .poultryfarmer-single-product div.product div.images .flex-control-thumbs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .poultryfarmer-single-product div.product div.images.woocommerce-product-gallery--without-images :is(.woocommerce-product-gallery__image, .woocommerce-product-gallery__image--placeholder) img {
+	width: min(100%, 240px);
+	max-height: 240px;
   }
 
   .poultryfarmer-single-product .cart,
